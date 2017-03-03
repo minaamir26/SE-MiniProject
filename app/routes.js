@@ -26,6 +26,7 @@ router.get('/addWork',controller.goToAddWork);
 router.get('/myportfolios',controller.goToMyProfiles);
 router.get('/portfolios/page/:id' , controller.loadProfiles);
 router.get('/logout',controller.logout);
+router.get('/user/:username' , controller.userProfile)
 
 router.post('/login' , controller.login);
 router.post('/register' , upload.any() , controller.submit);

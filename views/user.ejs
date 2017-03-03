@@ -1,0 +1,51 @@
+<a href="/addWork">Go Home !</a>
+<br>
+<div >
+        <div>
+            <label><strong>User Name </strong> : <%=user.username%></label>
+            <br>
+            <label><strong>Email:</strong> <%=user.email%></label>
+            <br>
+            <label><strong>Name :</strong> <%=user.name%></label>
+            <br>
+            <label><strong>GUC ID :</strong> <%user.gucid%></label>
+            <br>
+            <h2><strong>Here are your projects</strong></h2>
+            <br>
+            <br>
+        </div>
+
+        <% for(var i=0; i<user.works.length;){%>
+            <%  var ok = user.works[i]; if(ok.isURL){%>
+            <!-- Iffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="http://localhost:6225/no-image"  width="180" height="180" alt="no-image">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3><%= user.works[i].title %></h3>
+                <a class="btn btn-primary" href="<%= user.works[i].URL %>">View Project <span class="glyphicon glyphicon-chevron-right">
+               </span></a>
+            </div>
+        </div>
+        <hr>
+         <%}else{ %>
+         <!-- elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee -->
+         <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" width="180" height="180"  src="http://localhost:6225/<%=user.works[i].image%>" alt="Project-image">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3><%= user.works[i].title %></h3>
+                </span></a>
+            </div>
+        </div>
+        <hr>
+        <%}i = i+1;}%>
+
+</div>
+</div>

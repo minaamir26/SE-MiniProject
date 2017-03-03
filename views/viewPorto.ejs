@@ -28,17 +28,23 @@
 
 
 <div class="container">
-<a href="/">Go home</a>
+
+<%if(user.length<1){%>
+<h1>No available Portfolios</h1>
+<%}else{%>
+<a href="/">Go home</a> 
 <h1>Here are the portfolios of our students</h1>
 
 
 
-<% var max = 2;for(var i=max*id; i<Math.min(max*id+max,user.length);){%>
+<% var max = 10;for(var i=max*id; i<Math.min(max*id+max,user.length);){%>
 	<%  if(user[i].works.length>0){%>
     <br>
-    <div class="panel panel-primary">
+    <div class="panel panel-success">
         <div class="panel-heading"> 
-    <h2> <%=user[i].name%>'s works</h2> 
+        
+    <a href ="/user/<%=user[i].name%>" font-size ='100px' ><%=user[i].name%>'s works</a> 
+    <br>
     <img src="http://localhost:6225/<%=user[i].image%>"  width="180" height="180" alt="no-image">
         </div>
     <%if(user[i].works[0].isURL){%>
@@ -78,6 +84,7 @@
         <li><a href="/portfolios/page/<%=i%>"> <%=i+1%> </a></li>
         <% i=i+1;}%>
     </ul>
+    <%}%>
 </div>
 </body>
 </html>

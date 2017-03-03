@@ -168,6 +168,21 @@ let projectController =
     req.session.destroy();
     res.redirect('/');
 
+  },
+  userProfile:function(req,res){
+    var email2 = req.session.email;
+    User.findOne({email : email2} ,function(err,user)
+    {
+      if(email2)
+      {
+          res.render('user' , {user : user });
+      }
+      else
+      {
+        res.redirect('/');
+      }
+
+    });
   }
 }
 module.exports = projectController;
