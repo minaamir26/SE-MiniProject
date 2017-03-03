@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <title>List of All Portfolios</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+  <% errors.forEach(function(error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+  <% }) %>
+
+  <% infos.forEach(function(info) { %>
+    <div class="alert alert-info" role="alert">
+      <%= info %>
+    </div>
+  <% }) %>
+
+
+<div class="container">
+<a href="/">Go home</a>
+<h1>Here are the portfolios of our students</h1>
+
+
+
+<% var max = 2;for(var i=max*id; i<Math.min(max*id+max,user.length);){%>
+	<%  if(user[i].works.length>0){%>
+    <br>
+    <div class="panel panel-primary">
+        <div class="panel-heading"> 
+    <h2> <%=user[i].name%>'s works</h2> 
+    <img src="http://localhost:6225/<%=user[i].image%>"  width="180" height="180" alt="no-image">
+        </div>
+    <%if(user[i].works[0].isURL){%>
+             <div class="panel-body">
+                <h3><%= user[i].works[0].title %></h3>
+                <img src="http://localhost:6225/no-image"  width="180" height="180" alt="no-image">
+                <br>
+                <a href="<%= user[i].works[0].URL %>">View Project</a>
+            </div>
+        <hr>
+         <%}else{ %>
+        <div class="panel-body">
+                <h3><%= user[i].works[0].title %></h3>
+                <img width="180" height="180" src="http://localhost:6225/<%=user[i].works[0].image%>" alt="<%=user[i].works[0].image%>">
+        </div>
+        <hr>
+        <%}if(user[i].works.length>1){if(user[i].works[1].isURL){  %>
+            <div class="panel-body">
+                <h3><%= user[i].works[1].title %></h3>
+                <img class="img-responsive" src="http://localhost:6225/no-image"  width="180" height="180" alt="noo-image">
+                <br>
+                <a href="<%= user[i].works[0].URL %>">View Project</a>
+            </div>
+        <hr>
+         <%}else{ %>
+          <div class="panel-body">
+                <h3><%= user[i].works[0].title %></h3>
+                <img width="180" height="180" src="http://localhost:6225/<%=user[i].works[1].image%>" alt="<%=user[i].works[1].image%>">
+            </div>
+        <hr>
+        <%}}}%>
+        </div>
+        <%i = i+1;} %>
+        <ul class="pagination">
+  
+    <%for(var i=0 ; i<Math.ceil(user.length/(max*1.0));){%>
+        <li><a href="/portfolios/page/<%=i%>"> <%=i+1%> </a></li>
+        <% i=i+1;}%>
+    </ul>
+</div>
+</body>
+</html>

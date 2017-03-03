@@ -1,0 +1,31 @@
+<html>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+</html lang="en">
+
+
+<body>
+	<div>
+	<form method = "POST" >
+
+	<label>Here are the portfolios: </label>
+	<br>
+	<label>Title:</label>
+	<input type="text" name="title">
+
+	<label>URL:</label>
+	<input type="text" name="url">
+	
+	<br>
+  	<button type="submit"  >Add</button>
+  	<br>
+  	<h4>Your Works:</h4>
+  		<% for(var i=0; i<user.works.length; i++){%>
+                    <div class="card col-xs-4">
+                        <label class="card-title"> <%= user.works[i].title %></label>
+                        <a href="<%= user.works[i].URL %>" class="btn btn-primary card-link">Visit Website</a>
+                    </div>
+                <% } %>
+	</form>
+	<div>
+</body>

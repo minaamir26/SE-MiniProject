@@ -1,0 +1,130 @@
+<html>
+ <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Add a work</title>
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/4-col-portfolio.css" rel="stylesheet">
+</head>
+</html lang="en">
+
+
+<body>
+  
+	<div class="container">
+
+  <% errors.forEach(function(error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+  <% }) %>
+
+  <% infos.forEach(function(info) { %>
+    <div class="alert alert-info" role="alert">
+      <%= info %>
+    </div>
+  <% }) %>
+
+	<div>
+	<form method = "POST" enctype="multipart/form-data">
+
+	<label>Welcome, </label>
+	<label><%=user.name%></label>
+	<%if(user.works.length==0){%>
+	<label>You do not have a portofolio yet, add one works to create it</label>
+	<%}%>
+	<br>
+	<img src="<%=user.image%>" alt="<%=user.image%>" height=180 width=180>
+	<br>
+	<label>Add work</label>
+	<br>
+
+	<input type="radio" id="1" name="type" value="URL" checked="" >URL
+	<input type="radio" id="2" name="type" value="Screenshot">Screenshot
+	
+	<table style="width:80%">
+	<tr>
+	<td>
+	<label>Title:</label>
+	<input type="text" name="title1" id="title1">
+	</td>
+	<td>
+	<label>URL:</label>
+	</td>
+	<td>
+	<input type="url" name="url" id="url">
+	</td>
+  	</tr>
+
+  	
+  	<tr>
+	<td>
+	<label>Title:</label>
+	
+	<input type="text" name="title2" id="title2">
+	</td>
+	<td>
+	<label>Screenshot:</label>
+	</td>
+	<td>
+	<input type="file" name="image" id="image">
+	</td>
+  	</tr>
+  	<br>
+  	</table>
+
+  	<button type="submit" onclick="return Validate()">Add a Project</button>
+
+  	<hr>
+  	<!--
+	<h4>Your Works:</h4>
+	<table style="width:200%" align="center">
+  			<% for(var i=0; i<user.works.length;){%>
+  			<%  var ok = user.works[i]; if(ok.isURL){%>
+                    <tr>
+                        <td><label><%= (user.works)[i].title %></label></td>
+                        <td><a href="<%= user.works[i].URL %>" class="btn btn-primary card-link">Visit Website</a></td>
+                    </tr>
+                    <%}else{ %>
+                     <tr>
+                        <td><label><%= (user.works)[i].title %></label></td>
+                        <td><img src="<%=user.works[i].image%>" alt="<%=user.works[i].image%>" height=180 width=180></td>
+                     </tr>
+            <%  }i = i+1; %>
+
+        <% } %>
+
+  	-->
+  	<a href="/portfolios/page/0">View portfolios' summary</a>
+  	<br>
+  	<%if(user.works.length!=0){%>
+  	<a href="/myportfolios" >View my  Portofolio</a>
+  	<%}%>
+  	<br>
+  	<a href="/logout">Logout</a>
+	</form>
+	<div>
+
+	<script type="text/javascript">
+		function Validate(){
+			if(document.getElementById("1").checked && 
+			(document.getElementById("title1").value =="" || document.getElementById("url").value ==""))
+			{
+				alert("please fill in the title and the URL");
+				return false;
+			}
+			if(document.getElementById("2").checked &&
+			(document.getElementById("title2").value =="" || document.getElementById("image").value ==undefined))
+			{
+				alert("please fill in the title and upload the image")
+				return false;
+			}
+			return true;
+		}
+	</script>
+</body>

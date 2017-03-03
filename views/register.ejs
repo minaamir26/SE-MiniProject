@@ -1,0 +1,61 @@
+<html>
+</html lang="en">
+<meta charset="utf-8">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<body>
+	<div>
+	<form method = "POST" >
+	<table style="width:80%">
+		<tr>
+		<td><label>Name: </label></td>
+		<td><input type="text" required="required" name="name" id="name"></td>
+		</tr>
+
+		<tr>
+		<td><label>Email:</label></td>
+		<td><input type="email" required="required" name="email" id="email"></td>
+		</tr>
+		
+		<tr>
+		<td><label>Password: </label></td>
+		<td><input type="password" required="required" name="password" id="password"
+		pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"></td>
+		<td><p>The password should iclude an uppercase letter and a lowercase letter</p></td>
+		</tr>
+		
+		<tr>
+		<td><label>Confirm Password: </label></td>
+		<td><input type="password" required="required" name="password2" id="password2"
+		pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"></td>
+		</tr>
+
+		<script type="text/javascript">
+    	function Validate() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("password2").value;
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+   	 	}
+		</script>
+		
+		<tr>
+		<td><label>GUC-ID: </label></td>
+		<td><input type="text" required="required" name="gucid" id="gucid"></td>
+		</tr>
+
+		<tr>
+		<td><label>Gender: </label>
+		<td><input type="radio" required="required" name="gender" value="male" checked> Male<br>
+  		<input type="radio" name="gender" value="female"> Female<br></td>
+		</tr>
+
+	</table>
+	<br>
+  		<button type="submit" onclick="return Validate()" >Submit</button>
+	</form>
+	<div>
+</body>
